@@ -24,6 +24,9 @@ def start(update, context):
         logging.warning("An error occured in start_handler for user-%d",update.effective_chat.id)
         logging.error(str(e))
 
+def markdown_code(content):
+    "```{}```".format(content)
+
 def exec_command(update, context):
     command_text = update.message.text
     if(update.effective_chat.id in permitted_users):
@@ -46,9 +49,9 @@ def exec_command(update, context):
                 # else:
                 #     context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
                 if output.stdout:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text=output.stdout)
+                    context.bot.send_message(chat_id=update.effective_chat.id, text=markdown_code(output.stdout))
                 if output.stderr:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n".format(output.stderr))
+                    context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n{}".format(markdown_code(output.stderr)))
             except Exception as e:
                 context.bot.send_message(chat_id=update.effective_chat.id, text=str(e))
     else:
