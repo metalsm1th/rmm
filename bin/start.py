@@ -25,7 +25,7 @@ def start(update, context):
         logging.error(str(e))
 
 def markdown_code(content):
-    return "```{}```".format(content)
+    return "```\n{}\n```".format(content)
 
 def exec_command(update, context):
     command_text = update.message.text
