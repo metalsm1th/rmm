@@ -10,10 +10,11 @@ import pyscreenshot as ImageGrab
 
 class CommandFilter(BaseFilter):
     def filter( self, message):
-        if message.text.split()[0] in permitted_commands:
-            return True
-        else:
-            logging.info("%s is not allowed to be executed in the server",message.text.split()[0])
+        # if message.text.split()[0] in permitted_commands:
+        #     return True
+        # else:
+        #     logging.info("%s is not allowed to be executed in the server",message.text.split()[0])
+        return True
 
 def start(update, context):
     try:
