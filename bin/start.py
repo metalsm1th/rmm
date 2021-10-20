@@ -49,9 +49,10 @@ def exec_command(update, context):
                 # else:
                 #     context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
                 if output.stdout:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text=markdown_code(output.stdout))
+                    context.bot.send_message(chat_id=update.effective_chat.id, text=markdown_code(output.stdout), parse_mode='MarkdownV2')
                 if output.stderr:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n{}".format(markdown_code(output.stderr)))
+                    context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n{}".format(markdown_code(output.stderr)),
+                                             parse_mode='MarkdownV2')
             except Exception as e:
                 context.bot.send_message(chat_id=update.effective_chat.id, text=str(e))
     else:
