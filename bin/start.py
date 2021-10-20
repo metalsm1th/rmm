@@ -39,10 +39,10 @@ def exec_command(update, context):
                 photo = open(filename,'rb')
                 context.bot.send_photo(update.effective_chat.id,photo)
         else:
-            command = command_text.split()
+            command = command_text.strip()
             try:
                 # output = subprocess.check_output(command, cwd= curr_dir).decode('utf-8')
-                output = subprocess.run(command, capture_output=True, timeout=10, cwd=pathlib.Path.home(), encoding='utf-8')
+                output = subprocess.run(command, shell=True, capture_output=True, timeout=10, cwd=pathlib.Path.home(), encoding='utf-8')
                 logging.info("%s: %s", command, output)
                 # if output:
                 #     context.bot.send_message(chat_id=update.effective_chat.id, text=output)
