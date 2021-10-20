@@ -41,10 +41,14 @@ def exec_command(update, context):
                 # output = subprocess.check_output(command, cwd= curr_dir).decode('utf-8')
                 output = subprocess.run(command, capture_output=True, timeout=10, cwd=pathlib.Path.home(), encoding='utf-8')
                 logging.info("%s: %s", command, output)
-                if output:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text=output)
-                else:
-                    context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+                # if output:
+                #     context.bot.send_message(chat_id=update.effective_chat.id, text=output)
+                # else:
+                #     context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+                if output.stdout:
+                    context.bot.send_message(chat_id=update.effective_chat.id, text=output.stdout)
+                if output.stderr:
+                    context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n".format(output.stderr))
             except Exception as e:
                 context.bot.send_message(chat_id=update.effective_chat.id, text=str(e))
     else:
