@@ -8,3 +8,5 @@ pyscreenshot==2.2
 python-telegram-bot==12.2.0
 six==1.13.0
 tornado==6.0.3
+pyrogram==1.2.9
+tgcrypto==1.2.2
