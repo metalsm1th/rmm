@@ -54,7 +54,7 @@ def exec_command(update, context):
                     context.bot.send_message(chat_id=update.effective_chat.id, text="stderr:\n\n{}".format(markdown_code(output.stderr)),
                                              parse_mode='MarkdownV2')
             except Exception as e:
-                context.bot.send_message(chat_id=update.effective_chat.id, text=str(e))
+                context.bot.send_message(chat_id=update.effective_chat.id, text=str(e), disable_web_page_preview=True)
     else:
         context.bot.send_message(chat_id=update.effective_chat.id, text="You don't have permission to use this bot!")
 
